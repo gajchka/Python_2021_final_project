@@ -67,8 +67,9 @@ class EmployeesAPIedit(Resource):
         if Employee.query.get(emp_id) and Department.query.filter_by(name=dpt_name).first() \
                 and emp_name and emp_name.strip() and salary > 0:
             date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
-            edit_employee(emp_id, emp_name, date_of_birth, salary, dpt_name)
-            return {'message': 'EDIT_SUCCESS'}
+            dpt = Department.query.filter_by(name=dpt_name).first()
+            edit_employee(emp_id, emp_name, date_of_birth, salary, dpt)
+            return redirect('/employees')
 
 
 class EmployeesAPIdelete(Resource):
@@ -94,7 +95,12 @@ class EmployeesAPIfind(Resource):
             raise ValueError
         emp_qry = Employee.query.filter(Employee.date_of_birth.between(start_date, end_date)).all()
         employees = dict()
+        id_to_send = ''
         for ind, emp in enumerate(emp_qry):
+            id_to_send = id_to_send + str(emp.id) + '&'
             employees[ind] = {'id': emp.id, 'name': emp.name, 'date_of_birth': str(emp.date_of_birth),
                               'salary': emp.salary, 'department': emp.department}
+        if emp_qry:
+            return redirect(f'/employees/{id_to_send[0:-1]}/find')
+
         return employees

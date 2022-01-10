@@ -7,21 +7,33 @@ emp_api = Blueprint('employee_api', __name__, template_folder='templates')
 BASE_URL = 'http://127.0.0.1:5000/'
 
 
-@emp_api.route('/employees', methods=('GET', 'POST'))
-def show_employees():
+@emp_api.route('/employees/<id_to_show>/find', methods=['GET', 'POST'])
+@emp_api.route('/employees', methods=['GET', 'POST'])
+def show_employees(id_to_show=None):
     dpt = Department.query.all()
     emp = Employee.query.all()
     name = request.form.get('name')
     date_of_birth = request.form.get('date_of_birth')
     dpt_name = request.form.get('dpt_name')
     salary = request.form.get('salary')
+    start_date = request.form.get('start_date')
+    end_date = request.form.get('end_date')
+    if id_to_show:
+        emp.clear()
+        for id_ in id_to_show.split('&'):
+            for e in Employee.query.all():
+                if int(id_) == e.id:
+                    emp.append(e)
     if request.method == 'POST':
-        return redirect('/api/employees/add'+f'?emp_name={name}&date_of_birth={date_of_birth}'
+        if start_date and end_date:
+            return redirect('/api/employees/find' + f'?start_date={start_date}&end_date={end_date}')
+        else:
+            return redirect('/api/employees/add'+f'?emp_name={name}&date_of_birth={date_of_birth}'
                                              f'&dpt_name={dpt_name}&salary={salary}')
     return render_template('employees.html', departments=dpt, employees=emp)
 
 
-@emp_api.route('/employees/<id_>/edit', methods=('GET', 'POST'))
+@emp_api.route('/employees/<id_>/edit', methods=['GET', 'POST'])
 def edit_employee(id_):
     dpt = Department.query.all()
     emp = Employee.query.all()
@@ -41,5 +53,4 @@ def edit_employee(id_):
 def delete_employee(id_):
     if Employee.query.get(id_):
         return redirect('/api/employees/delete'+f'?emp_id={id_}')
-
 
