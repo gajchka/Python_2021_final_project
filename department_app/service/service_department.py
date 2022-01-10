@@ -28,7 +28,7 @@ def delete_department(id_):
     emp = Employee.query.all()
 
     for e in emp:
-        if e.department == dpt.name:
+        if e.department.name == dpt.name:
             db.session.delete(e)
     db.session.delete(dpt)
     db.session.commit()
@@ -42,8 +42,9 @@ def average_salary(emp, dpt):
         total_salary[d.id] = []
     for e in emp:
         for d in dpt:
-            if e.department.name == d.name:
-                total_salary[d.id].append(e.salary)
+            if e.department:
+                if e.department.name == d.name:
+                    total_salary[d.id].append(e.salary)
     for dep, sal in total_salary.items():
         if len(sal) != 0:
             avg_salary[dep] = sum(sal)/len(sal)
