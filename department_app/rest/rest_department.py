@@ -1,4 +1,5 @@
 from flask_restful import Resource, reqparse
+from flask import redirect
 from department_app.service.service_department import add_department, edit_department, delete_department, average_salary
 from department_app.models.department import Department
 
@@ -32,7 +33,7 @@ class DepartmentsAPIadd(Resource):
         dpt_name = arg['dpt_name']
         if dpt_name and dpt_name.strip() and not Department.query.filter_by(name=dpt_name).first():
             add_department(dpt_name)
-            return {'message': 'ADD_SUCCESS'}
+            return redirect('/departments')
 
 
 class DepartmentsAPIedit(Resource):
@@ -43,7 +44,7 @@ class DepartmentsAPIedit(Resource):
         dpt_id = arg['dpt_id']
         if dpt_name and dpt_name.strip() and Department.query.get(dpt_id):
             edit_department(dpt_id, dpt_name)
-            return {'message': 'EDIT_SUCCESS'}
+            return redirect('/departments')
 
 
 class DepartmentAPIdelete(Resource):
@@ -53,5 +54,5 @@ class DepartmentAPIdelete(Resource):
         dpt_id = arg['dpt_id']
         if Department.query.get(dpt_id):
             delete_department(dpt_id)
-            return {'message': 'DELETE_SUCCESS'}
+            return redirect('/departments')
 

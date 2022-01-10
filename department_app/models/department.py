@@ -6,7 +6,7 @@ class Department(db.Model):
     __tablename__ = 'department'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
+    name = db.Column(db.String(80), nullable=False)
 
     employees = db.relationship('Employee', backref=db.backref('department', lazy=True))
 
@@ -18,4 +18,4 @@ class Department(db.Model):
         self.employees = employees
 
     def __repr__(self):
-        return f'Department {self.name}'
+        return f'{self.name}'

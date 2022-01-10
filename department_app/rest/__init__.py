@@ -1,6 +1,8 @@
 from . import rest_employee
 from . import rest_department
-from department_app import api
+from flask_restful import Api
+
+api = Api()
 
 
 def init_api():

@@ -1,4 +1,5 @@
 from flask_restful import Resource, reqparse
+from flask import redirect
 from department_app.service.service_employee import add_employee, edit_employee, delete_employee
 from department_app.models.employee import Employee
 from department_app.models.department import Department
@@ -7,15 +8,17 @@ from datetime import datetime
 add_arg = reqparse.RequestParser()
 add_arg.add_argument('emp_name', type=str, help='Name of the new employee', required=True)
 add_arg.add_argument('date_of_birth', type=str, help='Date of birth', required=True)
-add_arg.add_argument('salary', type=int, help='Salary', required=True)
 add_arg.add_argument('dpt_name', type=str, help='Department name', required=True)
+add_arg.add_argument('salary', type=int, help='Salary', required=True)
+
 
 edit_arg = reqparse.RequestParser()
 edit_arg.add_argument('emp_id', type=int, help='Id of the employee to edit', required=True)
 edit_arg.add_argument('emp_name', type=str, help='New name of the employee', required=True)
 edit_arg.add_argument('date_of_birth', type=str, help=' New date of birth', required=True)
-edit_arg.add_argument('salary', type=int, help='New salary', required=True)
 edit_arg.add_argument('dpt_name', type=str, help='New department name', required=True)
+edit_arg.add_argument('salary', type=int, help='New salary', required=True)
+
 
 del_arg = reqparse.RequestParser()
 del_arg.add_argument('emp_id', type=int, help='Id of the employee to delete', required=True)
@@ -46,9 +49,10 @@ class EmployeesAPIadd(Resource):
         dpt_name = arg['dpt_name']
         if Department.query.filter_by(name=dpt_name).first() and emp_name and emp_name.strip() \
                 and salary > 0:
-            date_of_birth = datetime.strptime(date_of_birth, '%d-%m-%Y').date()
-            add_employee(emp_name, date_of_birth, salary, dpt_name)
-            return {'message': 'ADD_SUCCESS'}
+            date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
+            dpt = Department.query.filter_by(name=dpt_name).first()
+            add_employee(emp_name, date_of_birth, salary, dpt)
+            return redirect('/employees')
 
 
 class EmployeesAPIedit(Resource):
@@ -62,7 +66,7 @@ class EmployeesAPIedit(Resource):
         dpt_name = arg['dpt_name']
         if Employee.query.get(emp_id) and Department.query.filter_by(name=dpt_name).first() \
                 and emp_name and emp_name.strip() and salary > 0:
-            date_of_birth = datetime.strptime(date_of_birth, '%d-%m-%Y').date()
+            date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
             edit_employee(emp_id, emp_name, date_of_birth, salary, dpt_name)
             return {'message': 'EDIT_SUCCESS'}
 
@@ -74,7 +78,7 @@ class EmployeesAPIdelete(Resource):
         emp_id = arg['emp_id']
         if Employee.query.get(emp_id):
             delete_employee(emp_id)
-            return {'message': 'DELETE_SUCCESS'}
+            return redirect('/employees')
 
 
 class EmployeesAPIfind(Resource):
@@ -84,8 +88,8 @@ class EmployeesAPIfind(Resource):
         start_date = arg['start_date']
         end_date = arg['end_date']
 
-        start_date = datetime.strptime(start_date, '%d-%m-%Y').date()
-        end_date = datetime.strptime(end_date, '%d-%m-%Y').date()
+        start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+        end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
         if start_date > end_date:
             raise ValueError
         emp_qry = Employee.query.filter(Employee.date_of_birth.between(start_date, end_date)).all()
