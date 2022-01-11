@@ -83,7 +83,7 @@ Employees
                   <form method="post" class="row g-3 needs-validation" novalidate>
                             <tr>
                                 <td><input type="text"  name="edit_name" class="form-control" id="validationCustom08" value="{{ emp.name }}" required></td>
-                                <td><input name="edit_date_of_birth" id="validationCustom11" type="date" class="form-control" value="{{ emp.birth_date }}"></td>
+                                <td><input name="edit_date_of_birth" id="validationCustom11" type="date" class="form-control" value="{{ emp.date_of_birth }}"></td>
                                 <td><select name="edit_dpt" class="form-select" id="validationCustom09"  required>
                                     <option selected >{{ emp.department }}</option>
                                       {% for dpt in departments %}
