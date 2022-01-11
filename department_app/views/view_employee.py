@@ -1,15 +1,28 @@
+"""
+Module contains functions that work with employees page
+
+Functions:
+    show_employees(id_to_show=None)
+    edit_employee(id_)
+    delete_employee(id_)
+"""
 from department_app.models.department import Department
 from department_app.models.employee import Employee
 from flask import render_template, Blueprint, redirect, request
 
 
 emp_api = Blueprint('employee_api', __name__, template_folder='templates')
-BASE_URL = 'http://127.0.0.1:5000/'
 
 
 @emp_api.route('/employees/<id_to_show>/find', methods=['GET', 'POST'])
 @emp_api.route('/employees', methods=['GET', 'POST'])
 def show_employees(id_to_show=None):
+    """
+    On employees page adds new employee or finds employees by date of birth and renders
+    employees page
+    :param id_to_show: employee ids to show on page
+    :return: render employees page template
+    """
     dpt = Department.query.all()
     emp = Employee.query.all()
     name = request.form.get('name')
@@ -35,6 +48,11 @@ def show_employees(id_to_show=None):
 
 @emp_api.route('/employees/<id_>/edit', methods=['GET', 'POST'])
 def edit_employee(id_):
+    """
+    Edits information about employee with id_ and renders employees page template
+    :param id_: id of employee to edit
+    :return: render employees page template or redirects to employees page
+    """
     dpt = Department.query.all()
     emp = Employee.query.all()
     if Employee.query.get(id_):
@@ -51,6 +69,11 @@ def edit_employee(id_):
 
 @emp_api.route('/employees/<id_>/delete')
 def delete_employee(id_):
+    """
+    Deletes employee with id_ and redirects to employees page
+    :param id_: id of employee to delete
+    :return: redirects to employees page
+    """
     if Employee.query.get(id_):
         return redirect('/api/employees/delete'+f'?emp_id={id_}')
 
