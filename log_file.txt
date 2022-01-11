@@ -1,0 +1,62 @@
+2022-01-11 17:44:24,800 - INFO - Status: FAILED Action: adding Department 1
+2022-01-11 17:48:20,083 - INFO - Status: FAILED Action: adding Department 1
+2022-01-11 17:48:24,542 - INFO - Status: SUCCESS Action: adding 1234567
+2022-01-11 17:48:33,178 - INFO - Status: FAILED Action: adding 
+2022-01-11 18:09:19,018 - INFO - Status: FAILED Action: editing department id:2, new name: 
+2022-01-11 18:14:46,796 - INFO - Status: FAILED Action: adding Department 1
+2022-01-11 18:19:57,901 - INFO - Status: FAILED Action: editing department id:2, new name: Department 1
+2022-01-11 18:20:30,876 - INFO - Status: SUCCESS Action: editing department id:2, new name: Department 1
+2022-01-11 18:20:39,568 - INFO - Status: SUCCESS Action: editing department id:2, new name: Department 2
+2022-01-11 18:20:54,772 - INFO - Status: FAILED Action: editing department id:2, new name: Department 1
+2022-01-11 18:24:54,082 - INFO - Status: SUCCESS Action: deleting department id:2
+2022-01-11 19:00:35,713 - INFO - rest_department - Status: SUCCESS Action: adding Department 2
+2022-01-11 19:35:38,318 - INFO - rest_department - Status: SUCCESS Action: adding Department 3
+2022-01-11 19:35:41,274 - INFO - rest_department - Status: SUCCESS Action: deleting department id: 3
+2022-01-11 19:35:45,965 - INFO - rest_department - Status: SUCCESS Action: editing department id: 2, new name: Department 3
+2022-01-11 19:35:58,752 - INFO - rest_employee - Status: SUCCESS Action: adding employee name: asdfgbn, date of birth: 2022-01-04, department: Department 3, salary: 123
+2022-01-11 19:36:08,180 - INFO - rest_department - Status: SUCCESS Action: editing department id: 2, new name: Department 2
+2022-01-11 20:59:24,995 - INFO - rest_employee - Status: FAILED Action: adding employee name: sdfvgbh, date of birth: 2022-01-06, department: Department 1, salary: sdcf
+2022-01-11 21:00:29,345 - INFO - rest_employee - Status: FAILED Action: adding employee name: qwe, date of birth: 2022-01-05, department: None, salary: 123
+2022-01-11 21:00:42,059 - INFO - rest_employee - Status: FAILED Action: adding employee name:     , date of birth: 2021-12-29, department: Department 1, salary: 1234
+2022-01-11 21:06:34,963 - INFO - rest_employee - Status: SUCCESS Action: adding employee name: Anna Winter, date of birth: 2022-01-05, department: Department 1, salary: 1250
+2022-01-11 21:13:44,245 - INFO - rest_employee - Status: SUCCESS Action: adding employee name: Anna Winter, date of birth: 2022-01-05, department: Department 1, salary: 1250
+2022-01-11 21:21:50,717 - INFO - rest_employee - Status: SUCCESS Action: editing employee id: 1, name: Anna Winter, date of birth: 2022-01-05, department: Department 1, salary: 1250
+2022-01-11 21:22:27,084 - INFO - rest_employee - Status: FAILED Action: adding employee name: Anna Winter, date of birth: 2022-01-05, department: Department 1, salary: 1250
+2022-01-11 21:22:47,170 - INFO - rest_employee - Status: SUCCESS Action: adding employee name: Anna Winter  , date of birth: 2022-01-05, department: Department 1, salary: 1250
+2022-01-11 21:26:42,242 - INFO - rest_employee - Status: FAILED Action: adding employee name: Anna Winter, date of birth: 2022-01-05, department: Department 1, salary: 1250
+2022-01-11 21:29:09,113 - INFO - rest_department - Status: FAILED Action: adding Department 1
+2022-01-11 21:29:12,425 - INFO - rest_department - Status: FAILED Action: adding 
+2022-01-11 21:29:18,402 - INFO - rest_employee - Status: FAILED Action: adding employee name: , date of birth: , department: None, salary: 
+2022-01-11 21:37:50,398 - INFO - rest_employee - Status: SUCCESS Action: editing employee id: 2, name: Anna Winters, date of birth: 2022-01-05, department: Department 1, salary: 1250
+2022-01-11 21:37:59,004 - INFO - rest_employee - Status: FAILED Action: editing employee id: 2, name: Anna Winter, date of birth: 2022-01-05, department: Department 1, salary: 1250
+2022-01-11 21:38:15,609 - INFO - rest_employee - Status: SUCCESS Action: editing employee id: 2, name: John Walter, date of birth: 2021-12-29, department: Department 1, salary: 700
+2022-01-11 21:41:35,795 - INFO - rest_employee - Status: FAILED Action: adding employee name: None, date of birth: None, department: None, salary: None
+2022-01-11 21:41:36,840 - INFO - rest_employee - Status: FAILED Action: adding employee name: None, date of birth: None, department: None, salary: None
+2022-01-11 21:41:37,557 - INFO - rest_employee - Status: FAILED Action: adding employee name: None, date of birth: None, department: None, salary: None
+2022-01-11 21:42:12,895 - INFO - rest_employee - Status: FAILED Action: adding employee name: None, date of birth: None, department: None, salary: None
+2022-01-11 21:42:14,403 - INFO - rest_employee - Status: FAILED Action: adding employee name: None, date of birth: None, department: None, salary: None
+2022-01-11 21:50:50,905 - INFO - rest_employee - Status: FAILED Action: adding employee name: None, date of birth: None, department: None, salary: None
+2022-01-11 21:50:54,187 - INFO - rest_employee - Status: FAILED Action: adding employee name: None, date of birth: None, department: None, salary: None
+2022-01-11 22:07:44,162 - INFO - Status: SUCCESS Action: adding employee name: Marie Jones, date of birth: 2021-12-26, department: Department 2, salary: 1200
+2022-01-11 22:07:59,043 - INFO - Status: SUCCESS Action: adding employee name: Karl Bones, date of birth: 2021-12-31, department: Department 2, salary: 700
+2022-01-11 23:47:31,958 - INFO - Status: SUCCESS Action: adding Department 1
+2022-01-11 23:47:39,264 - INFO - Status: SUCCESS Action: adding Department 2
+2022-01-11 23:47:43,789 - INFO - Status: SUCCESS Action: adding Department 3
+2022-01-11 23:47:45,062 - INFO - Status: SUCCESS Action: deleting department id: 3
+2022-01-11 23:47:51,009 - INFO - Status: SUCCESS Action: editing department id: 2, new name: Department 3
+2022-01-11 23:47:56,598 - INFO - Status: SUCCESS Action: editing department id: 2, new name: Department 2
+2022-01-11 23:48:14,641 - INFO - Status: SUCCESS Action: adding employee name: Anna Winter, date of birth: 2022-01-04, department: Department 1, salary: 1000
+2022-01-11 23:48:36,541 - INFO - Status: SUCCESS Action: adding employee name: John Watson, date of birth: 2022-01-05, department: Department 2, salary: 1200
+2022-01-11 23:48:51,465 - INFO - Status: SUCCESS Action: adding employee name: Paul Mayers, date of birth: 2022-01-02, department: Department 1, salary: 700
+2022-01-11 23:49:09,072 - INFO - Status: SUCCESS Action: finding employee by date of birth start date: 2022-01-02, end date: 2022-01-04
+2022-01-11 23:51:56,434 - INFO - Status: FAILED Action: editing employee id: 3, name: Paul Mayers, date of birth: , department: Department 2, salary: 700
+2022-01-11 23:52:12,271 - INFO - Status: FAILED Action: editing employee id: 3, name: Paul Mayers, date of birth: , department: Department 2, salary: 700
+2022-01-12 01:22:15,029 - INFO - Status: FAILED Action: editing employee id: 3, name: Paul Mayers, date of birth: , department: Department 1, salary: 600
+2022-01-12 01:22:23,779 - INFO - Status: FAILED Action: editing employee id: 3, name: Paul Mayers, date of birth: , department: Department 1, salary: 600
+2022-01-12 01:22:32,626 - INFO - Status: FAILED Action: editing employee id: 2, name: John Watson, date of birth: , department: Department 2, salary: 1300
+2022-01-12 01:22:48,826 - INFO - Status: SUCCESS Action: finding employee by date of birth start date: 2022-01-03, end date: 2022-01-05
+2022-01-12 01:23:00,985 - INFO - Status: SUCCESS Action: editing department id: 2, new name: Department 3
+2022-01-12 01:23:13,855 - INFO - Status: FAILED Action: editing employee id: 1, name: Anna Winter, date of birth: , department: Department 3, salary: 1000
+2022-01-12 01:25:00,551 - INFO - Status: FAILED Action: editing employee id: 1, name: Anna Winter, date of birth: , department: Department 1, salary: 1100
+2022-01-12 01:25:48,964 - INFO - Status: SUCCESS Action: editing employee id: 3, name: Paul Mayers, date of birth: 2022-01-12, department: Department 1, salary: 800
+2022-01-12 01:27:09,419 - INFO - Status: SUCCESS Action: editing employee id: 1, name: Anna Winter, date of birth: 2022-01-04, department: Department 1, salary: 1100
