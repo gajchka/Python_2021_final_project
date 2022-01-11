@@ -1,5 +1,5 @@
 """
-Package contains classes for database
+Package contains modules with classes describing DB models
 
 Classes:
     Employee(db.Model)

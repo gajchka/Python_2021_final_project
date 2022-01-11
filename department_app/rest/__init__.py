@@ -1,5 +1,5 @@
 """
-Package contains classes that work with REST Api
+Package contains modules with classes that work with REST Api
 
 Classes:
     EmployeesAPIget(Resource)
