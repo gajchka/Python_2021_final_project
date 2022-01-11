@@ -1,12 +1,11 @@
 """
-Module contains classes that work with REST Api for Employees
+Module contains classes that work with REST Api for Departments
 
 Classes:
-    EmployeesAPIget(Resource)
-    EmployeesAPIadd(Resource)
-    EmployeesAPIedit(Resource)
-    EmployeesAPIdelete(Resource)
-    EmployeesAPIfind(Resource)
+    DepartmentsAPIget(Resource)
+    DepartmentsAPIadd(Resource)
+    DepartmentsAPIedit(Resource)
+    DepartmentAPIdelete(Resource)
 """
 from flask_restful import Resource, reqparse
 from flask import redirect

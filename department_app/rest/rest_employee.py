@@ -1,3 +1,13 @@
+"""
+Module contains classes that work with REST Api for Employees
+
+Classes:
+    EmployeesAPIget(Resource)
+    EmployeesAPIadd(Resource)
+    EmployeesAPIedit(Resource)
+    EmployeesAPIdelete(Resource)
+    EmployeesAPIfind(Resource)
+"""
 from flask_restful import Resource, reqparse
 from flask import redirect
 from department_app.service.service_employee import add_employee, edit_employee, delete_employee
