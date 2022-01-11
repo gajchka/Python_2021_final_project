@@ -1,8 +1,17 @@
+"""
+Module contains class Employee for database
+
+Classes:
+    Employee(db.Model)
+"""
 from department_app import db
 
 
 class Employee(db.Model):
-
+    """
+    Class is descendant of db.Model
+    Creates table Employee in db
+    """
     __tablename__ = 'employee'
 
     id = db.Column(db.Integer, primary_key=True)
