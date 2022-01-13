@@ -2,7 +2,6 @@
 Module contains classes that work with REST Api for Employees
 
 Classes:
-    EmployeesAPIget(Resource)
     EmployeesAPIadd(Resource)
     EmployeesAPIedit(Resource)
     EmployeesAPIdelete(Resource)
@@ -16,6 +15,7 @@ from department_app.service.service_department import get_department_name
 from department_app.models.employee import Employee
 from datetime import datetime
 from logging_file import logger
+
 
 add_arg = reqparse.RequestParser()
 add_arg.add_argument('emp_name', type=str, help='Name of the new employee', required=True)
@@ -46,27 +46,6 @@ def check_data_unique(name, dob, dpt, salary):
     return True
 
 
-class EmployeesAPIget(Resource):
-    """
-    Class inherits from class Resource and is responsible for getting
-    information about employees
-
-   Methods:
-       get(self)
-   """
-    def get(self):
-        """
-        Gets information about all employees in the tables and stores it in a dict
-        :return: dict with information about employees
-        """
-        emp_qry = get_employees()
-        employees = dict()
-        for ind, emp in enumerate(emp_qry):
-            employees[ind] = {'id': emp.id, 'name': emp.name, 'date_of_birth': emp.date_of_birth,
-                              'salary': emp.salary, 'department': emp.department}
-        return employees
-
-
 class EmployeesAPIadd(Resource):
     """
     Class inherits from class Resource and is responsible for adding
@@ -89,16 +68,14 @@ class EmployeesAPIadd(Resource):
         try:
             salary = int(salary)
             date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
-            if get_department_name(dpt_name) and emp_name \
-                    and salary > 0 and date_of_birth and check_data_unique(emp_name, date_of_birth, dpt_name, salary):
-                dpt = get_department_name(dpt_name)
+            dpt = get_department_name(dpt_name)
+            if dpt and emp_name and salary > 0 and date_of_birth \
+                    and check_data_unique(emp_name, date_of_birth, dpt_name, salary):
                 add_employee(emp_name, date_of_birth, salary, dpt)
                 logger.info(f'Status: SUCCESS Action: adding employee name: {emp_name}, date of birth: '
                             f'{date_of_birth}, department: {dpt_name}, salary: {salary}')
                 return redirect('/employees')
-            logger.info(f'Status: FAILED Action: adding employee name: {emp_name}, date of birth: '
-                        f'{date_of_birth}, department: {dpt_name}, salary: {salary}')
-            return redirect('/employees')
+            raise ValueError
         except:
             logger.info(f'Status: FAILED Action: adding employee name: {emp_name}, date of birth: '
                         f'{date_of_birth}, department: {dpt_name}, salary: {salary}')
@@ -136,9 +113,7 @@ class EmployeesAPIedit(Resource):
                 logger.info(f'Status: SUCCESS Action: editing employee id: {emp_id}, name: {emp_name}, '
                             f'date of birth: {date_of_birth}, department: {dpt_name}, salary: {salary}')
                 return redirect('/employees')
-            logger.info(f'Status: FAILED Action: editing employee id: {emp_id}, name: {emp_name}, '
-                        f'date of birth: {date_of_birth}, department: {dpt_name}, salary: {salary}')
-            return redirect('/employees')
+            raise ValueError
         except:
             logger.info(f'Status: FAILED Action: editing employee id: {emp_id}, name: {emp_name}, '
                         f'date of birth: {date_of_birth}, department: {dpt_name}, salary: {salary}')
@@ -187,20 +162,17 @@ class EmployeesAPIfind(Resource):
         start_date = arg['start_date']
         end_date = arg['end_date']
 
-        start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
-        end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
         try:
+            start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+            end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
             if start_date > end_date:
                 raise ValueError
             emp_qry = Employee.query.filter(Employee.date_of_birth.between(start_date, end_date)).all()
-            employees = dict()
             id_to_send = ''
-            for ind, emp in enumerate(emp_qry):
+            for emp in emp_qry:
                 id_to_send = id_to_send + str(emp.id) + '&'
-                employees[ind] = {'id': emp.id, 'name': emp.name, 'date_of_birth': str(emp.date_of_birth),
-                                  'salary': emp.salary, 'department': emp.department}
             logger.info(f'Status: SUCCESS Action: finding employee by date of birth start date: {start_date}, '
-                        f'end date: {end_date}')
+                        f'end date: {end_date}. Result ids: {id_to_send[0:-1]}')
             if emp_qry:
                 return redirect(f'/employees/{id_to_send[0:-1]}/find')
             return redirect(f'/employees/0/find')

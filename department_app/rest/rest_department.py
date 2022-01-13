@@ -2,7 +2,6 @@
 Module contains classes that work with REST Api for Departments
 
 Classes:
-    DepartmentsAPIget(Resource)
     DepartmentsAPIadd(Resource)
     DepartmentsAPIedit(Resource)
     DepartmentAPIdelete(Resource)
@@ -23,27 +22,6 @@ edit_arg.add_argument('dpt_name', type=str, help='New department name', required
 
 del_arg = reqparse.RequestParser()
 del_arg.add_argument('dpt_id', type=int, help='Id of the department to delete', required=True)
-
-
-class DepartmentsAPIget(Resource):
-    """
-    Class inherits from class Resource and is responsible for getting
-    information about departments
-
-    Methods:
-        get(self)
-    """
-    def get(self):
-        """
-        Gets information about all departments in the table
-        :return: dict of departments and information about them
-        """
-        dpt_qry = get_departments()
-        avg_salary = average_salary()
-        dpt_dict = dict()
-        for ind, dpt in enumerate(dpt_qry):
-            dpt_dict[f'{ind}'] = {'id': dpt.id, 'department': dpt.name, 'avg_salary': avg_salary[dpt.id]}
-        return dpt_dict
 
 
 class DepartmentsAPIadd(Resource):
