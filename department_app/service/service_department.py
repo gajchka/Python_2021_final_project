@@ -29,10 +29,10 @@ def get_department_id(id_):
     Gets department with id_ from db
     :return: department with id_
     """
-    try:
-        return Department.query.get(id_)
-    except:
-        logger.warning(f'Status: FAILED Action: DB get department by id')
+    dpt = Department.query.get(id_)
+    if not dpt:
+        logger.info(f'Department with id: {id_} not found')
+    return dpt
 
 
 def get_department_name(dpt_name):
@@ -42,9 +42,8 @@ def get_department_name(dpt_name):
     """
     dpt = Department.query.filter_by(name=dpt_name).first()
     if not dpt:
-        logger.warning(f'Status: FAILED Action: DB get department by name')
-    else:
-        return dpt
+        logger.info(f'Department with name: {dpt_name} not found')
+    return dpt
 
 
 def add_department(department):

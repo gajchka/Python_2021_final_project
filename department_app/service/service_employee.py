@@ -26,10 +26,10 @@ def get_employee_id(id_):
     Gets employee with id_ from db
     :return: employee with id_
     """
-    try:
-        return Employee.query.get(id_)
-    except:
-        logger.warning(f'Status: FAILED Action: DB get employee by id')
+    emp = Employee.query.get(id_)
+    if not emp:
+        logger.info(f'Employee with id: {id_} not found')
+    return emp
 
 
 def add_employee(name, date_of_birth, salary, department):

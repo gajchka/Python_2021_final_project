@@ -3,7 +3,8 @@ from department_app import create_app, db
 from populate import populate_database
 from config import TestConfig
 from department_app.models.department import Department
-from department_app.service.service_department import add_department, edit_department, delete_department, average_salary
+from department_app.service.service_department import add_department, edit_department, \
+    delete_department, average_salary, get_departments, get_department_name, get_department_id
 
 app = create_app(TestConfig)
 
@@ -20,6 +21,31 @@ class MyTestCase(unittest.TestCase):
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+
+    # test get_departments function
+    def test_get_departments(self):
+        dpt = get_departments()
+        self.assertEqual(len(dpt), 3)
+        self.assertEqual(dpt, Department.query.all())
+
+    # test get_department_id function
+    def test_get_department_id(self):
+        dpt = get_department_id(1)
+        self.assertEqual(dpt.name, 'Department 33')
+        with self.assertLogs('my_logger', 'INFO') as cm:
+            dpt1 = get_department_id(5)
+            self.assertEqual(dpt1, None)
+            self.assertEqual(cm.output, ['INFO:my_logger:Department with id: 5 not found'])
+
+    # test get_department_name function
+    def test_get_department_name(self):
+        dpt = get_department_name('Department 33')
+        self.assertEqual(dpt.id, 1)
+        with self.assertLogs('my_logger', 'INFO') as cm:
+            dpt1 = get_department_name('Dpt')
+            self.assertEqual(dpt1, None)
+            self.assertEqual(cm.output, ['INFO:my_logger:Department with name: Dpt not found'])
+
 
     # test add_department function on valid data
     def test_department_add(self):

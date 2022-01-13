@@ -5,7 +5,7 @@ from populate import populate_database
 from datetime import date
 from department_app.models.employee import Employee
 from department_app.models.department import Department
-from department_app.service.service_employee import add_employee, edit_employee, delete_employee
+from department_app.service.service_employee import add_employee, edit_employee, delete_employee, get_employees, get_employee_id
 
 app = create_app(TestConfig)
 
@@ -23,7 +23,28 @@ class MyTestCase(unittest.TestCase):
         db.session.remove()
         db.drop_all()
 
-    #test add_employee function on valid data
+    # test get_employees function
+    def test_get_employees(self):
+        emp = get_employees()
+        self.assertEqual(len(emp), 3)
+        self.assertEqual(emp, Employee.query.all())
+
+    # test get_employee_id function on valid data
+    def test_get_employee_id(self):
+        emp = get_employee_id(1)
+        self.assertEqual(emp.name, 'John Watson')
+        self.assertEqual(emp.date_of_birth, date(1996, 5, 12))
+        self.assertEqual(emp.salary, 2000)
+        self.assertEqual(emp.department, Department.query.get(1))
+
+    # test get_employee_id function on valid data
+    def test_get_employee_id_err(self):
+        with self.assertLogs('my_logger', 'INFO') as cm:
+            emp = get_employee_id(5)
+            self.assertEqual(emp, None)
+            self.assertEqual(cm.output, ['INFO:my_logger:Employee with id: 5 not found'])
+
+    # test add_employee function on valid data
     def test_employee_add(self):
         emp = add_employee('Anna', date(1996, 5, 12), 1000, Department.query.get(1))
         self.assertEqual(emp.name, 'Anna')
