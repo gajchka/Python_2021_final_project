@@ -25,7 +25,7 @@ def populate_database():
     department_3 = Department('Department 77')
 
     employee_1 = Employee('John Watson', date(1996, 5, 12), 2000, department_1)
-    employee_2 = Employee('Sherlock Holmes', date(1993, 2, 23), 2100, department_2)
+    employee_2 = Employee('Sherlock Holmes', date(1993, 2, 23), 2100, department_1)
     employee_3 = Employee('Mary Watson', date(1989, 11, 30), 1800, department_3)
 
     db.session.add(department_1)

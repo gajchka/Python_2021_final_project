@@ -57,6 +57,10 @@ class MyTestCase(unittest.TestCase):
             delete_department(4)
             self.assertEqual(cm.output, ['WARNING:my_logger:Status: FAILED Action: DB delete department'])
 
+    def test_average_salary(self):
+        avg_salary = average_salary()
+        self.assertEqual(avg_salary, {1: 2050.0, 2: 'No employees yet', 3: 1800.0})
+
 
 if __name__ == '__main__':
     unittest.main()
