@@ -23,6 +23,7 @@ def add_employee(name, date_of_birth, salary, department):
         emp = Employee(name, date_of_birth, salary, department)
         db.session.add(emp)
         db.session.commit()
+        return emp
     except:
         logger.warning(f'Status: FAILED Action: DB add employee')
 
@@ -43,6 +44,7 @@ def edit_employee(id_, name, date_of_birth, salary, department):
         emp.salary = salary
         emp.department = department
         db.session.commit()
+        return emp
     except:
         logger.warning(f'Status: FAILED Action: DB edit employee')
 

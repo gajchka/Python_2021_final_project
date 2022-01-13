@@ -28,4 +28,4 @@ class Employee(db.Model):
         self.department = department
 
     def __repr__(self):
-        return f'Employee {self.name}, date of birth: {self.date_of_birth}, salary:{self.salary}'
+        return f'{self.id}, {self.name}, {self.date_of_birth}, {self.department}, {self.salary}'
