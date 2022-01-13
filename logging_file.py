@@ -9,7 +9,7 @@ def define_logger():
     Creates logger, connects it with handlers and defines format of log messages.
     :return: logger instance
     """
-    logger_r = logging.getLogger(__name__)
+    logger_r = logging.getLogger('my_logger')
     logger_r.setLevel(logging.DEBUG)
 
     stream_handler = logging.StreamHandler()
