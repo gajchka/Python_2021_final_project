@@ -6,8 +6,8 @@ Functions:
     edit_employee(id_)
     delete_employee(id_)
 """
-from department_app.models.department import Department
-from department_app.models.employee import Employee
+from department_app.service.service_department import get_departments
+from department_app.service.service_employee import get_employees, get_employee_id
 from flask import render_template, Blueprint, redirect, request
 
 
@@ -23,8 +23,8 @@ def show_employees(id_to_show=None):
     :param id_to_show: employee ids to show on page
     :return: render employees page template
     """
-    dpt = Department.query.all()
-    emp = Employee.query.all()
+    dpt = get_departments()
+    emp = get_employees()
     name = request.form.get('name')
     date_of_birth = request.form.get('date_of_birth')
     dpt_name = request.form.get('dpt_name')
@@ -34,7 +34,7 @@ def show_employees(id_to_show=None):
     if id_to_show:
         emp.clear()
         for id_ in id_to_show.split('&'):
-            for e in Employee.query.all():
+            for e in get_employees():
                 if int(id_) == e.id:
                     emp.append(e)
     if request.method == 'POST':
@@ -53,9 +53,9 @@ def edit_employee(id_):
     :param id_: id of employee to edit
     :return: render employees page template or redirects to employees page
     """
-    dpt = Department.query.all()
-    emp = Employee.query.all()
-    if Employee.query.get(id_):
+    dpt = get_departments()
+    emp = get_employees()
+    if get_employee_id(id_):
         if request.method == 'POST':
             name = request.form.get('edit_name')
             date_of_birth = request.form.get('edit_date_of_birth')
@@ -74,6 +74,6 @@ def delete_employee(id_):
     :param id_: id of employee to delete
     :return: redirects to employees page
     """
-    if Employee.query.get(id_):
+    if get_employee_id(id_):
         return redirect('/api/employees/delete'+f'?emp_id={id_}')
 

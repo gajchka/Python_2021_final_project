@@ -7,8 +7,7 @@ Functions:
     edit_department(id_)
     delete_department(id_)
 """
-from department_app.models.department import Department
-from department_app.service.service_department import average_salary
+from department_app.service.service_department import average_salary, get_department_id, get_departments
 from flask import render_template, Blueprint, redirect, request
 
 
@@ -31,7 +30,7 @@ def show_departments():
     renders departments page template
     :return: render departments page template
     """
-    dpt = Department.query.all()
+    dpt = get_departments()
     department = request.form.get('dpt_name')
     avg_salary = average_salary()
     if request.method == 'POST':
@@ -46,9 +45,9 @@ def edit_department(id_):
     :param id_: id of department to edit
     :return: renders departments page template or redirects to departments page
     """
-    dpt = Department.query.all()
+    dpt = get_departments()
     avg_salary = average_salary()
-    if Department.query.get(id_):
+    if get_department_id(id_):
         if request.method == 'POST':
             department = request.form.get('new_dpt')
             return redirect('/api/departments/edit'+f'?dpt_id={id_}&dpt_name={department}')

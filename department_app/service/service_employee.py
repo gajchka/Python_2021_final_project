@@ -2,6 +2,8 @@
 Module contains functions to work with Employee (CRUD operations)
 
 Functions:
+    get_employees()
+    get_employee_id(id_)
     add_employee(name, date_of_birth, salary, department)
     edit_employee(id_, name, date_of_birth, salary, department)
     delete_employee(id_)
@@ -9,6 +11,25 @@ Functions:
 from department_app import db
 from department_app.models.employee import Employee
 from logging_file import logger
+
+
+def get_employees():
+    """
+    Gets all employees from db
+    :return: list of all employees
+    """
+    return Employee.query.all()
+
+
+def get_employee_id(id_):
+    """
+    Gets employee with id_ from db
+    :return: employee with id_
+    """
+    try:
+        return Employee.query.get(id_)
+    except:
+        logger.warning(f'Status: FAILED Action: DB get employee by id')
 
 
 def add_employee(name, date_of_birth, salary, department):

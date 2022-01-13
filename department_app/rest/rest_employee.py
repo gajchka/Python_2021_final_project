@@ -10,9 +10,10 @@ Classes:
 """
 from flask_restful import Resource, reqparse
 from flask import redirect
-from department_app.service.service_employee import add_employee, edit_employee, delete_employee
+from department_app.service.service_employee import add_employee, edit_employee, \
+    delete_employee, get_employees, get_employee_id
+from department_app.service.service_department import get_department_name
 from department_app.models.employee import Employee
-from department_app.models.department import Department
 from datetime import datetime
 from logging_file import logger
 
@@ -38,7 +39,7 @@ find_arg.add_argument('end_date', type=str, help='End date of the requested peri
 
 
 def check_data_unique(name, dob, dpt, salary):
-    emp = Employee.query.all()
+    emp = get_employees()
     for e in emp:
         if e.name == name and e.date_of_birth == dob and e.department.name == dpt and e.salary == salary:
             return False
@@ -58,7 +59,7 @@ class EmployeesAPIget(Resource):
         Gets information about all employees in the tables and stores it in a dict
         :return: dict with information about employees
         """
-        emp_qry = Employee.query.all()
+        emp_qry = get_employees()
         employees = dict()
         for ind, emp in enumerate(emp_qry):
             employees[ind] = {'id': emp.id, 'name': emp.name, 'date_of_birth': emp.date_of_birth,
@@ -88,9 +89,9 @@ class EmployeesAPIadd(Resource):
         try:
             salary = int(salary)
             date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
-            if Department.query.filter_by(name=dpt_name).first() and emp_name \
+            if get_department_name(dpt_name) and emp_name \
                     and salary > 0 and date_of_birth and check_data_unique(emp_name, date_of_birth, dpt_name, salary):
-                dpt = Department.query.filter_by(name=dpt_name).first()
+                dpt = get_department_name(dpt_name)
                 add_employee(emp_name, date_of_birth, salary, dpt)
                 logger.info(f'Status: SUCCESS Action: adding employee name: {emp_name}, date of birth: '
                             f'{date_of_birth}, department: {dpt_name}, salary: {salary}')
@@ -127,10 +128,10 @@ class EmployeesAPIedit(Resource):
         try:
             salary = int(salary)
             date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
-            if Employee.query.get(emp_id) and Department.query.filter_by(name=dpt_name).first() \
+            if get_employee_id(emp_id) and get_department_name(dpt_name) \
                     and emp_name and salary > 0 and date_of_birth \
                     and check_data_unique(emp_name, date_of_birth, dpt_name, salary):
-                dpt = Department.query.filter_by(name=dpt_name).first()
+                dpt = get_department_name(dpt_name)
                 edit_employee(emp_id, emp_name, date_of_birth, salary, dpt)
                 logger.info(f'Status: SUCCESS Action: editing employee id: {emp_id}, name: {emp_name}, '
                             f'date of birth: {date_of_birth}, department: {dpt_name}, salary: {salary}')
@@ -159,7 +160,7 @@ class EmployeesAPIdelete(Resource):
         """
         arg = del_arg.parse_args()
         emp_id = arg['emp_id']
-        if Employee.query.get(emp_id):
+        if get_employee_id(emp_id):
             delete_employee(emp_id)
             logger.info(f'Status: SUCCESS Action: deleting employee id: {emp_id}')
             return redirect('/employees')

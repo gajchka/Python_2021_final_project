@@ -9,8 +9,8 @@ Classes:
 """
 from flask_restful import Resource, reqparse
 from flask import redirect
-from department_app.service.service_department import add_department, edit_department, delete_department, average_salary
-from department_app.models.department import Department
+from department_app.service.service_department import add_department, edit_department, \
+    delete_department, average_salary, get_department_id, get_departments, get_department_name
 from logging_file import logger
 
 
@@ -38,11 +38,11 @@ class DepartmentsAPIget(Resource):
         Gets information about all departments in the table
         :return: dict of departments and information about them
         """
-        dpt_qry = Department.query.all()
+        dpt_qry = get_departments()
         avg_salary = average_salary()
         dpt_dict = dict()
         for ind, dpt in enumerate(dpt_qry):
-            dpt_dict[f'{ind}'] = {'id': dpt.id, 'department': dpt.name, 'avg_salary': avg_salary}
+            dpt_dict[f'{ind}'] = {'id': dpt.id, 'department': dpt.name, 'avg_salary': avg_salary[dpt.id]}
         return dpt_dict
 
 
@@ -62,7 +62,7 @@ class DepartmentsAPIadd(Resource):
         """
         arg = add_arg.parse_args()
         dpt_name = arg['dpt_name'].strip()
-        if dpt_name and not Department.query.filter_by(name=dpt_name).first():
+        if dpt_name and not get_department_name(dpt_name):
             add_department(dpt_name)
             logger.info(f'Status: SUCCESS Action: adding {dpt_name}')
             return redirect('/departments')
@@ -87,8 +87,8 @@ class DepartmentsAPIedit(Resource):
         arg = edit_arg.parse_args()
         dpt_name = arg['dpt_name'].strip()
         dpt_id = arg['dpt_id']
-        if dpt_name and Department.query.get(dpt_id) and \
-                dpt_name not in list(map(lambda x: x.name, Department.query.all())):
+        if dpt_name and get_department_id(dpt_id) and \
+                dpt_name not in list(map(lambda x: x.name, get_departments())):
             edit_department(dpt_id, dpt_name)
             logger.info(f'Status: SUCCESS Action: editing department id: {dpt_id}, new name: {dpt_name}')
             return redirect('/departments')
@@ -111,7 +111,7 @@ class DepartmentAPIdelete(Resource):
         """
         arg = del_arg.parse_args()
         dpt_id = arg['dpt_id']
-        if Department.query.get(dpt_id):
+        if get_department_id(dpt_id):
             delete_department(dpt_id)
             logger.info(f'Status: SUCCESS Action: deleting department id: {dpt_id}')
             return redirect('/departments')
