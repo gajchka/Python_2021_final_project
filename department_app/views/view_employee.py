@@ -40,8 +40,7 @@ def show_employees(id_to_show=None):
     if request.method == 'POST':
         if start_date and end_date:
             return redirect('/api/employees/find' + f'?start_date={start_date}&end_date={end_date}')
-        else:
-            return redirect('/api/employees/add'+f'?emp_name={name}&date_of_birth={date_of_birth}'
+        return redirect('/api/employees/add'+f'?emp_name={name}&date_of_birth={date_of_birth}'
                                              f'&dpt_name={dpt_name}&salary={salary}')
     return render_template('employees.html', departments=dpt, employees=emp)
 
@@ -74,6 +73,4 @@ def delete_employee(id_):
     :param id_: id of employee to delete
     :return: redirects to employees page
     """
-    if get_employee_id(id_):
-        return redirect('/api/employees/delete'+f'?emp_id={id_}')
-
+    return redirect('/api/employees/delete'+f'?emp_id={id_}')

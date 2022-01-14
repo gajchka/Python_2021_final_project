@@ -46,7 +46,7 @@ def add_employee(name, date_of_birth, salary, department):
         db.session.commit()
         return emp
     except:
-        logger.warning(f'Status: FAILED Action: DB add employee')
+        logger.warning('Status: FAILED Action: DB add employee')
 
 
 def edit_employee(id_, name, date_of_birth, salary, department):
@@ -67,7 +67,7 @@ def edit_employee(id_, name, date_of_birth, salary, department):
         db.session.commit()
         return emp
     except:
-        logger.warning(f'Status: FAILED Action: DB edit employee')
+        logger.warning('Status: FAILED Action: DB edit employee')
 
 
 def delete_employee(id_):
@@ -80,4 +80,4 @@ def delete_employee(id_):
         db.session.delete(emp)
         db.session.commit()
     except:
-        logger.warning(f'Status: FAILED Action: DB delete employee')
+        logger.warning('Status: FAILED Action: DB delete employee')

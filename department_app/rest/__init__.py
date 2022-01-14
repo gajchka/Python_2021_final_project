@@ -10,9 +10,9 @@ Classes:
     DepartmentsAPIedit(Resource)
     DepartmentAPIdelete(Resource)
 """
+from flask_restful import Api
 from . import rest_employee
 from . import rest_department
-from flask_restful import Api
 
 api = Api()
 

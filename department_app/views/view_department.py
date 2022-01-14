@@ -7,7 +7,8 @@ Functions:
     edit_department(id_)
     delete_department(id_)
 """
-from department_app.service.service_department import average_salary, get_department_id, get_departments
+from department_app.service.service_department import average_salary, get_department_id, \
+    get_departments
 from flask import render_template, Blueprint, redirect, request
 
 
@@ -47,12 +48,10 @@ def edit_department(id_):
     """
     dpt = get_departments()
     avg_salary = average_salary()
-    if get_department_id(id_):
-        if request.method == 'POST':
-            department = request.form.get('new_dpt')
-            return redirect('/api/departments/edit'+f'?dpt_id={id_}&dpt_name={department}')
-        return render_template('departments.html', id_=int(id_), departments=dpt, avg_salary=avg_salary)
-    return redirect('/departments')
+    if request.method == 'POST':
+        department = request.form.get('new_dpt')
+        return redirect('/api/departments/edit'+f'?dpt_id={id_}&dpt_name={department}')
+    return render_template('departments.html', id_=int(id_), departments=dpt, avg_salary=avg_salary)
 
 
 @dpt_api.route('/departments/<id_>/delete')
@@ -63,6 +62,3 @@ def delete_department(id_):
     :return:redirects to departments page
     """
     return redirect('/api/departments/delete'+f'?dpt_id={id_}')
-
-
-

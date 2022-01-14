@@ -7,14 +7,14 @@ Classes:
     EmployeesAPIdelete(Resource)
     EmployeesAPIfind(Resource)
 """
+from datetime import datetime
 from flask_restful import Resource, reqparse
 from flask import redirect
+from logging_file import logger
 from department_app.service.service_employee import add_employee, edit_employee, \
     delete_employee, get_employees, get_employee_id
 from department_app.service.service_department import get_department_name
 from department_app.models.employee import Employee
-from datetime import datetime
-from logging_file import logger
 
 
 add_arg = reqparse.RequestParser()
@@ -39,9 +39,18 @@ find_arg.add_argument('end_date', type=str, help='End date of the requested peri
 
 
 def check_data_unique(name, dob, dpt, salary):
+    """
+    Checks if an employee with the given data already exists
+    :param name: employee name
+    :param dob: date of birth
+    :param dpt: department
+    :param salary: salary
+    :return: bool value
+    """
     emp = get_employees()
     for e in emp:
-        if e.name == name and e.date_of_birth == dob and e.department.name == dpt and e.salary == salary:
+        if e.name == name and e.date_of_birth == dob and e.department.name == dpt and \
+                e.salary == salary:
             return False
     return True
 
@@ -92,8 +101,8 @@ class EmployeesAPIedit(Resource):
     """
     def get(self):
         """
-        In case of valid input data changes info about employee with given id and redirects to employees page.
-        In case of invalid data redirects to employees page.
+        In case of valid input data changes info about employee with given id and
+        redirects to employees page. In case of invalid data redirects to employees page.
         :return: redirects to employees page
         """
         arg = edit_arg.parse_args()
@@ -110,8 +119,9 @@ class EmployeesAPIedit(Resource):
                     and check_data_unique(emp_name, date_of_birth, dpt_name, salary):
                 dpt = get_department_name(dpt_name)
                 edit_employee(emp_id, emp_name, date_of_birth, salary, dpt)
-                logger.info(f'Status: SUCCESS Action: editing employee id: {emp_id}, name: {emp_name}, '
-                            f'date of birth: {date_of_birth}, department: {dpt_name}, salary: {salary}')
+                logger.info(f'Status: SUCCESS Action: editing employee id: {emp_id}, name: '
+                            f'{emp_name}, date of birth: {date_of_birth}, department: '
+                            f'{dpt_name}, salary: {salary}')
                 return redirect('/employees')
             raise ValueError
         except:

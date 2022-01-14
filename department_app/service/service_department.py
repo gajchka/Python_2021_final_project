@@ -57,7 +57,7 @@ def add_department(department):
         db.session.commit()
         return dpt
     except:
-        logger.warning(f'Status: FAILED Action: DB add department')
+        logger.warning('Status: FAILED Action: DB add department')
 
 
 def edit_department(id_, department):
@@ -76,7 +76,7 @@ def edit_department(id_, department):
         db.session.commit()
         return dpt
     except:
-        logger.warning(f'Status: FAILED Action: DB edit department')
+        logger.warning('Status: FAILED Action: DB edit department')
 
 
 def delete_department(id_):
@@ -93,7 +93,7 @@ def delete_department(id_):
         db.session.delete(dpt)
         db.session.commit()
     except:
-        logger.warning(f'Status: FAILED Action: DB delete department')
+        logger.warning('Status: FAILED Action: DB delete department')
 
 
 def average_salary():
@@ -103,8 +103,8 @@ def average_salary():
     """
     dpt = Department.query.all()
     emp = Employee.query.all()
-    total_salary = dict()
-    avg_salary = dict()
+    total_salary = {}
+    avg_salary = {}
     for d in dpt:
         total_salary[d.id] = []
     for e in emp:
