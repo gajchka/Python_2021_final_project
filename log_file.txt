@@ -60,3 +60,52 @@
 2022-01-12 01:25:00,551 - INFO - Status: FAILED Action: editing employee id: 1, name: Anna Winter, date of birth: , department: Department 1, salary: 1100
 2022-01-12 01:25:48,964 - INFO - Status: SUCCESS Action: editing employee id: 3, name: Paul Mayers, date of birth: 2022-01-12, department: Department 1, salary: 800
 2022-01-12 01:27:09,419 - INFO - Status: SUCCESS Action: editing employee id: 1, name: Anna Winter, date of birth: 2022-01-04, department: Department 1, salary: 1100
+2022-01-12 10:27:24,573 - INFO - Status: SUCCESS Action: adding Department 2
+2022-01-12 10:27:44,219 - INFO - Status: SUCCESS Action: adding employee name: Ann Stone, date of birth: 2021-12-27, department: Department 2, salary: 600
+2022-01-12 10:27:52,449 - INFO - Status: SUCCESS Action: editing department id: 3, new name: Department 4
+2022-01-12 13:30:58,927 - INFO - Status: FAILED Action: adding employee name: , date of birth: , department: None, salary: 
+2022-01-12 13:32:44,249 - INFO - Status: FAILED Action: adding employee name: , date of birth: , department: None, salary: 
+2022-01-12 14:28:58,182 - INFO - Status: SUCCESS Action: editing department id: 2, new name: Department 5
+2022-01-12 14:29:06,915 - INFO - Status: SUCCESS Action: editing employee id: 3, name: Paul Mayers, date of birth: 2022-01-12, department: Department 5, salary: 800
+2022-01-12 18:44:50,350 - INFO - Status: FAILED Action: adding 
+2022-01-12 19:55:18,457 - INFO - Status: SUCCESS Action: deleting department id: 5
+2022-01-12 19:55:19,989 - INFO - Status: SUCCESS Action: deleting department id: 4
+2022-01-12 22:05:31,303 - INFO - Status: SUCCESS Action: adding Department 1
+2022-01-12 22:05:37,808 - INFO - Status: SUCCESS Action: adding Department 2
+2022-01-12 22:05:53,063 - INFO - Status: SUCCESS Action: adding employee name: Anna Winter, date of birth: 2022-01-05, department: Department 1, salary: 1000
+2022-01-13 17:25:54,772 - WARNING - Status: FAILED Action: DB get department by name
+2022-01-13 17:25:54,787 - INFO - Status: SUCCESS Action: adding Department 1
+2022-01-13 17:26:01,857 - WARNING - Status: FAILED Action: DB get department by name
+2022-01-13 17:26:01,869 - INFO - Status: SUCCESS Action: adding Department 2
+2022-01-13 17:26:08,105 - WARNING - Status: FAILED Action: DB get department by name
+2022-01-13 17:26:08,118 - INFO - Status: SUCCESS Action: adding [dfgg]
+2022-01-13 17:26:17,364 - INFO - Status: SUCCESS Action: deleting department id: 3
+2022-01-13 17:26:30,560 - INFO - Status: SUCCESS Action: adding employee name: Anna Winter, date of birth: 2022-01-11, department: Department 1, salary: 1000
+2022-01-13 17:26:53,511 - INFO - Status: SUCCESS Action: adding employee name: Jack Brown, date of birth: 2022-01-04, department: Department 1, salary: 300
+2022-01-13 17:27:09,751 - INFO - Status: SUCCESS Action: adding employee name: John Simm, date of birth: 2021-12-26, department: Department 2, salary: 900
+2022-01-13 17:27:28,216 - INFO - Status: SUCCESS Action: finding employee by date of birth start date: 2022-01-03, end date: 2022-01-14
+2022-01-13 17:27:37,885 - INFO - Status: SUCCESS Action: finding employee by date of birth start date: 2022-01-11, end date: 2022-01-11
+2022-01-13 23:21:14,195 - INFO - Department with name: Department 3 not found
+2022-01-13 23:21:14,210 - INFO - Status: SUCCESS Action: adding Department 3
+2022-01-13 23:21:20,244 - INFO - Status: FAILED Action: adding Department 1
+2022-01-13 23:21:32,604 - INFO - Status: SUCCESS Action: finding employee by date of birth start date: 2021-12-28, end date: 2022-01-03. Result ids: 
+2022-01-13 23:21:39,717 - INFO - Status: SUCCESS Action: finding employee by date of birth start date: 2022-01-03, end date: 2022-01-13. Result ids: 1&2
+2022-01-14 16:25:40,826 - INFO - Department with name: Department 4 not found
+2022-01-14 16:25:40,847 - INFO - Status: SUCCESS Action: adding Department 4
+2022-01-14 16:25:50,093 - INFO - Status: SUCCESS Action: editing department id: 1, new name: Department 5
+2022-01-14 16:29:27,759 - INFO - Status: SUCCESS Action: deleting department id: 4
+2022-01-14 16:29:30,662 - INFO - Status: SUCCESS Action: deleting department id: 3
+2022-01-14 16:41:44,334 - INFO - Status: SUCCESS Action: deleting department id: 2
+2022-01-14 16:41:53,554 - INFO - Department with name: Department 1 not found
+2022-01-14 16:41:53,571 - INFO - Status: SUCCESS Action: adding Department 1
+2022-01-14 19:24:35,767 - WARNING - Status: FAILED Action: DB add employee
+2022-01-14 19:24:35,768 - INFO - Status: SUCCESS Action: adding employee name: jhgfd, date of birth: 2022-01-19, department: Department 5, salary: 123
+2022-01-14 19:25:13,252 - INFO - Status: SUCCESS Action: adding employee name: sdfgh, date of birth: 2022-01-12, department: Department 1, salary: 234
+2022-01-14 19:26:49,897 - INFO - Status: SUCCESS Action: deleting department id: 2
+2022-01-14 19:27:04,199 - INFO - Status: SUCCESS Action: adding employee name: dfgh, date of birth: 2022-01-04, department: Department 5, salary: 234
+2022-01-14 19:29:13,840 - INFO - Status: SUCCESS Action: deleting employee id: 3
+2022-01-14 19:29:38,358 - INFO - Status: SUCCESS Action: deleting employee id: 2
+2022-01-14 20:00:19,256 - INFO - Department with name: Department 1 not found
+2022-01-14 20:00:19,276 - INFO - Status: SUCCESS Action: adding Department 1
+2022-01-14 20:00:25,692 - INFO - Status: SUCCESS Action: editing department id: 2, new name: Department 3
+2022-01-14 22:14:21,349 - INFO - Status: SUCCESS Action: finding employee by date of birth start date: 2022-01-03, end date: 2022-01-12. Result ids: 1
