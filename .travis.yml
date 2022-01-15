@@ -1,15 +1,8 @@
 language: python
-os: windows
 python:
-  - "3.8"
-
-install:
-  - pip install -r requirements.txt
+  - 3.8.2
 
 script:
-  - pylint department_app
-  - coverage run -m unittest discover department_app/tests
+  - pip install -r requirements.txt
   - coverage report
 
-after_success:
-  - coveralls
