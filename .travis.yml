@@ -4,5 +4,4 @@ python:
 
 script:
   - pip install -r requirements.txt
-  - coverage report
 
