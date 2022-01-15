@@ -4,6 +4,13 @@ python:
 
 script:
   - pip install -r requirements.txt
+  - python -m unittest -v department_app/tests/test_service_employee.py
+  - python -m unittest -v department_app/tests/test_service_department.py
+  - python -m unittest -v department_app/tests/test_rest_employee.py
+  - python -m unittest -v department_app/tests/test_rest_department.py
+  - python -m unittest -v department_app/tests/test_view_employee.py
+  - python -m unittest -v department_app/tests/test_view_employee.py
+
 
 after_success:
   - coveralls
