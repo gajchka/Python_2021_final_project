@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Departments
+{% endblock %}
+{% block body %}
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+    <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+            <li><p class="navbar-brand" href="#">Department App</p></li>
+            <li class="nav-item active">
+                <a class="nav-link active" href="/departments" >Departments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/employees">Employees</a>
+            </li>
+            </ul>
+    </div>
+</div>
+</nav>
+    <div class="container mt-5">
+        <h1>Add department</h1>
+        <form method="post" class="row g-3 needs-validation">
+            <div class="col-md-3">
+                <input type="text" name="dpt_name" id="department" class="form-control" placeholder="Enter department name">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+        </form>
+        <h1>Departments</h1>
+        <table id="data" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Department</th>
+                  <th>Average salary</th>
+                  <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for dpt in departments %}
+                <tr>
+                    {% if dpt.id == id_ %}
+                     <form method="post" class="row g-3 needs-validation" novalidate>
+                            <td>
+                                <input type="text" name="new_dpt" class="form-control" value="{{ dpt.name }}">
+                            </td>
+                            <td>{% for dpt_id in avg_salary %}
+                              {% if dpt.id == dpt_id %}
+                                {{ avg_salary[dpt_id] }}
+                              {% endif %}
+                              {% endfor %}
+                          </td>
+                            <td>
+                                <button class="btn btn-success" type="submit">Submit</button>
+                                <a href="/departments" class="btn btn-danger">Cancel</a>
+                            </td>
+                     </form>
+                    {% else %}
+                    <td>
+                      {{ dpt.name }}
+                    </td>
+                  <td>{% for dpt_id in avg_salary %}
+                      {% if dpt.id == dpt_id %}
+                        {{ avg_salary[dpt_id] }}
+                      {% endif %}
+                      {% endfor %}
+                  </td>
+                     <td>
+                         <a href="/departments/{{ dpt.id }}/edit" class="btn btn-success">Edit</a>
+                         <a href="/departments/{{ dpt.id }}/delete" class="btn btn-danger">Delete</a>
+                    </td>
+                    {% endif %}
+                </tr>
+              {% endfor %}
+            </tbody>
+  </table>
+    </div>
+{% endblock %}
