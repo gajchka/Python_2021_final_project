@@ -10,11 +10,11 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
+<div class="container-fluid">
     <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-            <li><p class="navbar-brand">Department App</p></li>
-            <li class="nav-item">
+            <li><p class="navbar-brand" href="#">Department App</p></li>
+            <li class="nav-item active">
                 <a class="nav-link active" href="/departments" >Departments</a>
             </li>
             <li class="nav-item">
@@ -22,7 +22,66 @@
             </li>
             </ul>
     </div>
-    </div>
+</div>
 </nav>
+    <div class="container mt-5">
+        <h1>Add department</h1>
+        <form method="post" class="row g-3 needs-validation">
+            <div class="col-md-3">
+                <input type="text" name="dpt_name" id="department" class="form-control" placeholder="Enter department name">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+        </form>
+        <h1>Departments</h1>
+        <table id="data" class="table table-striped">
+            <thead>
+              <tr>
+                <th>Department</th>
+                  <th>Average salary</th>
+                  <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                      Department 33
+                    </td>
+                  <td>
+                      2050.0
+                  </td>
+                     <td>
+                         <a href="/departments/1/edit" class="btn btn-success">Edit</a>
+                         <a href="/departments/1/delete" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            <tr>
+                <td>
+                    Department 55
+                </td>
+                <td>
+                      No employees yet
+                  </td>
+                     <td>
+                         <a href="/departments/2/edit" class="btn btn-success">Edit</a>
+                         <a href="/departments/2/delete" class="btn btn-danger">Delete</a>
+                    </td>
+            </tr>
+            <tr>
+                <td>
+                    Department 77
+                </td>
+                <td>
+                      1800.0
+                  </td>
+                     <td>
+                         <a href="/departments/3/edit" class="btn btn-success">Edit</a>
+                         <a href="/departments/3/delete" class="btn btn-danger">Delete</a>
+                    </td>
+            </tr>
+            </tbody>
+  </table>
+    </div>
 </body>
 </html>
