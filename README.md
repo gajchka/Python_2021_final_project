@@ -23,5 +23,27 @@ be displayed below. Press 'Clear filter' button to return to all employees.
 
 ![App Screenshot](documentation/images/screen3.png)
 ## Installation
-
-
+1. Create a local copy of the project with a command:
+```bash
+git clone https://github.com/gajchka/Python_2021_final_project.git
+```
+2. Go to Python_2021_final_project directory
+3. Create a virtual environment in the directory
+```bash
+python3 -m venv Python_2021_final_project/venv
+```
+4. Activate virtual environment
+```bash
+source venv/bin/activate
+```
+5. Install the requirements
+```bash
+pip install -r requirements.txt
+```
+6. Run the application
+```bash
+python3 run_app.py
+```
+## Author info
+- Iryna Feshchenko
+- gajchka@gmail.com
