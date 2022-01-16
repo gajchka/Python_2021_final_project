@@ -7,10 +7,8 @@ Functions:
     edit_department(id_)
     delete_department(id_)
 """
-from department_app.service.service_department import average_salary, get_department_id, \
-    get_departments
 from flask import render_template, Blueprint, redirect, request
-
+from department_app.service.service_department import average_salary, get_departments
 
 dpt_api = Blueprint('department_api', __name__, template_folder='templates')
 

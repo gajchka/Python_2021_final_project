@@ -109,3 +109,16 @@
 2022-01-14 20:00:19,276 - INFO - Status: SUCCESS Action: adding Department 1
 2022-01-14 20:00:25,692 - INFO - Status: SUCCESS Action: editing department id: 2, new name: Department 3
 2022-01-14 22:14:21,349 - INFO - Status: SUCCESS Action: finding employee by date of birth start date: 2022-01-03, end date: 2022-01-12. Result ids: 1
+2022-01-16 11:20:30,713 - INFO - Status: SUCCESS Action: deleting department id: 1
+2022-01-16 11:20:31,339 - INFO - Status: SUCCESS Action: deleting department id: 2
+2022-01-16 11:20:38,821 - INFO - Department with name: Department 1 not found
+2022-01-16 11:20:38,835 - INFO - Status: SUCCESS Action: adding Department 1
+2022-01-16 11:20:44,654 - INFO - Department with name: Department 2 not found
+2022-01-16 11:20:44,670 - INFO - Status: SUCCESS Action: adding Department 2
+2022-01-16 11:20:52,710 - INFO - Department with name: Department 3 not found
+2022-01-16 11:20:52,720 - INFO - Status: SUCCESS Action: adding Department 3
+2022-01-16 11:21:16,330 - INFO - Status: SUCCESS Action: adding employee name: Anna Winter, date of birth: 1990-02-06, department: Department 1, salary: 1200
+2022-01-16 11:21:40,374 - INFO - Status: SUCCESS Action: adding employee name: John Brown, date of birth: 1987-09-03, department: Department 2, salary: 900
+2022-01-16 11:22:14,265 - INFO - Status: SUCCESS Action: adding employee name: Steven Mayers, date of birth: 1997-08-25, department: Department 1, salary: 700
+2022-01-16 11:36:16,087 - INFO - Status: FAILED Action: adding employee name: , date of birth: , department: None, salary: 
+2022-01-16 11:36:39,982 - INFO - Status: SUCCESS Action: finding employee by date of birth start date: 1985-10-04, end date: 1991-06-12. Result ids: 1&2

@@ -6,10 +6,9 @@ Functions:
     edit_employee(id_)
     delete_employee(id_)
 """
+from flask import render_template, Blueprint, redirect, request
 from department_app.service.service_department import get_departments
 from department_app.service.service_employee import get_employees, get_employee_id
-from flask import render_template, Blueprint, redirect, request
-
 
 emp_api = Blueprint('employee_api', __name__, template_folder='templates')
 

@@ -34,8 +34,8 @@ del_arg = reqparse.RequestParser()
 del_arg.add_argument('emp_id', type=int, help='Id of the employee to delete', required=True)
 
 find_arg = reqparse.RequestParser()
-find_arg.add_argument('start_date', type=str, help='Start date of the requested period', required=True)
-find_arg.add_argument('end_date', type=str, help='End date of the requested period', required=True)
+find_arg.add_argument('start_date', type=str, help='Start date of requested period', required=True)
+find_arg.add_argument('end_date', type=str, help='End date of requested period', required=True)
 
 
 def check_data_unique(name, dob, dpt, salary):
@@ -181,12 +181,12 @@ class EmployeesAPIfind(Resource):
             id_to_send = ''
             for emp in emp_qry:
                 id_to_send = id_to_send + str(emp.id) + '&'
-            logger.info(f'Status: SUCCESS Action: finding employee by date of birth start date: {start_date}, '
-                        f'end date: {end_date}. Result ids: {id_to_send[0:-1]}')
+            logger.info(f'Status: SUCCESS Action: finding employee by date of birth start date: '
+                        f'{start_date}, end date: {end_date}. Result ids: {id_to_send[0:-1]}')
             if emp_qry:
                 return redirect(f'/employees/{id_to_send[0:-1]}/find')
-            return redirect(f'/employees/0/find')
+            return redirect('/employees/0/find')
         except:
-            logger.info(f'Status: FAILED Action: finding employee by date of birth start date: {start_date}, '
-                        f'end date: {end_date}')
-            return redirect(f'/employees')
+            logger.info(f'Status: FAILED Action: finding employee by date of birth start date: '
+                        f'{start_date}, end date: {end_date}')
+            return redirect('/employees')

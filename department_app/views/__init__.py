@@ -14,6 +14,5 @@ Functions:
     edit_employee(id_)
     delete_employee(id_)
 """
-from . import view_department
 from . import view_employee
-
+from . import view_department
