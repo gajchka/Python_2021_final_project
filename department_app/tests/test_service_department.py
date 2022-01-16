@@ -26,7 +26,7 @@ class MyTestCase(unittest.TestCase):
     def test_get_departments(self):
         dpt = get_departments()
         self.assertEqual(len(dpt), 3)
-        self.assertEqual(dpt, Department.query.all())
+        self.assertEqual(str(dpt), '[Department 33, Department 55, Department 77]')
 
     # test get_department_id function
     def test_get_department_id(self):
