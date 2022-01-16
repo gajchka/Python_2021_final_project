@@ -9,8 +9,9 @@ script:
   - python -m unittest -v department_app/tests/test_rest_employee.py
   - python -m unittest -v department_app/tests/test_rest_department.py
   - python -m unittest -v department_app/tests/test_view_employee.py
-  - python -m unittest -v department_app/tests/test_view_employee.py
-
+  - python -m unittest -v department_app/tests/test_view_department.py
+  - python -m unittest -v department_app/tests/test_models_employee.py
+  - python -m unittest -v department_app/tests/test_models_department.py
 
 after_success:
   - coveralls
